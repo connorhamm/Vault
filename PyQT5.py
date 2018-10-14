@@ -1,16 +1,22 @@
 """
 Logic:
-1. Create a timer
-2. Add in a note system that is shared with phone
+-1. Create current program into a more modular design
+0. Make executeable - done with the use of anaconda for package dependencies
+1. Create prompt for asking you what you need, and do you need to really get this?
+2, Create a button for routines
+3. Create a timer
+4. Add in a note system that is shared with phone
 
 """
 import vlc
 import webbrowser
 import subprocess
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
-from PyQt5.QtGui import QIcon
+import os
+
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QLineEdit, QMessageBox
 from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtGui import QIcon
 
 class App(QWidget):
 
@@ -19,8 +25,8 @@ class App(QWidget):
         self.title = 'The Vault'
         self.left = 10
         self.top = 10
-        self.width = 320
-        self.height = 200
+        self.width = 281
+        self.height = 400
         self.initUI()
 
     def initUI(self):
@@ -29,25 +35,21 @@ class App(QWidget):
 
         # Brilliant Button
         button = QPushButton('Brilliant', self)
-        button.setToolTip('This is an example button')
         button.move(0, 70)
         button.clicked.connect(self.on_click_1)
 
         # Udacity Button
         button2 = QPushButton('Udacity', self)
-        button2.setToolTip('This is an example button')
         button2.move(100, 70)
         button2.clicked.connect(self.on_click_2)
 
         # Udemy Button
         button3 = QPushButton('Udemy', self)
-        button3.setToolTip('This is an example button')
         button3.move(200, 70)
         button3.clicked.connect(self.on_click_3)
 
         # Anki Button
         button4 = QPushButton('Anki', self)
-        button4.setToolTip('This is an example button')
         button4.move(200, 0)
         button4.clicked.connect(self.on_click_4)
 
@@ -59,33 +61,60 @@ class App(QWidget):
         3. turn off or on based on counter
         """
         button5 = QPushButton('Rain.mp3', self)
-        button5.setToolTip('This is an example button')
         button5.move(200, 140)
         button5.clicked.connect(self.on_click_5)
 
         # Evernote Button
         button6 = QPushButton('Evernote', self)
-        button6.setToolTip('This is an example button')
         button6.move(0, 0)
         button6.clicked.connect(self.on_click_6)
 
         # Social Media Button
         button7 = QPushButton('Social Media', self)
-        button7.setToolTip('This is an example button')
         button7.move(0, 140)
         button7.clicked.connect(self.on_click_7)
 
         # Spotify
         button8 = QPushButton('Spotify', self)
-        button8.setToolTip('This is an example button')
         button8.move(100, 140)
         button8.clicked.connect(self.on_click_8)
 
         # Financial Information
         button9 = QPushButton('Financial Info', self)
-        button9.setToolTip('This is an example button')
         button9.move(100, 0)
         button9.clicked.connect(self.on_click_9)
+
+        # Amazon
+        button10 = QPushButton('Amazon', self)
+        button10.move(200, 210)
+        button10.clicked.connect(self.on_click_10)
+
+        # Debug
+        button11 = QPushButton('Debug', self)
+        button11.move(100, 210)
+        button11.clicked.connect(self.on_click_11)
+
+        # Wolfram Alpha
+        button12 = QPushButton('Wolfram Alpha', self)
+        button12.move(0, 210)
+        button12.clicked.connect(self.on_click_12)
+
+        # Netflix
+        # Prompt User to Set a timer for how long they spend on it?
+        button13 = QPushButton('Netflix', self)
+        button13.move(100, 210)
+        button13.clicked.connect(self.on_click_13)
+
+        # Pomodoro Timer
+        button14 = QPushButton('Timer', self)
+        button14.move(0, 280)
+        button14.clicked.connect(self.on_click_14)
+
+        # Routine
+        button15 = QPushButton('Routine', self)
+        button15.move(100, 280)
+        button15.clicked.connect(self.on_click_15)
+
 
         self.show()
 
@@ -126,6 +155,35 @@ class App(QWidget):
         webbrowser.open_new("https://www.uasecho.com/Account/SignIn")
         webbrowser.open_new("https://www.allstate.com/auto-insurance.aspx")
         webbrowser.open_new("https://www.starone.org/")
+
+    def on_click_10(self):
+        print("textbox")
+        # Textbox Generation
+
+        # Create a conditional website open
+        webbrowser.open_new("https://www.amazon.com")
+
+    def on_click_11(self):
+        webbrowser.open_new("https://www.stackoverflow.com")
+        webbrowser.open_new("https://www.python.org")
+        webbrowser.open_new("https://www.wikipedia.org")
+        webbrowser.open_new("https://examine.com/")
+
+    def on_click_12(self):
+        webbrowser.open_new("https://www.wolframalpha.com/")
+
+    def on_click_13(self):
+        webbrowser.open_new("https://www.netflix.com")
+
+    def on_click_14(self):
+        print("test")
+        os.chdir("/home/connor/thomas")
+        command = 'npm start'
+        process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+
+    def on_click_15(self):
+        print("test")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
