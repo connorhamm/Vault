@@ -4,8 +4,8 @@ Logic:
 0. Make executeable - done with the use of anaconda for package dependencies
 1. Create prompt for asking you what you need, and do you need to really get this?
 2, Create a button for routines
-3. Create a timer
-4. Add in a note system that is shared with phone
+
+# Perhaps add in android emulator for bumble / hinge
 
 """
 import vlc
@@ -69,8 +69,8 @@ class App(QWidget):
         button6.move(0, 0)
         button6.clicked.connect(self.on_click_6)
 
-        # Social Media Button
-        button7 = QPushButton('Social Media', self)
+        # Social Serious
+        button7 = QPushButton('Social Work', self)
         button7.move(0, 140)
         button7.clicked.connect(self.on_click_7)
 
@@ -110,11 +110,16 @@ class App(QWidget):
         button14.move(0, 280)
         button14.clicked.connect(self.on_click_14)
 
-        # Routine
-        button15 = QPushButton('Routine', self)
+        # Routine & Rules
+        button15 = QPushButton('Routine/Rules', self)
         button15.move(100, 280)
         button15.clicked.connect(self.on_click_15)
 
+
+        # Social X
+        button16 = QPushButton('Messaging', self)
+        button16.move(200, 280)
+        button16.clicked.connect(self.on_click_16)
 
         self.show()
 
@@ -138,11 +143,9 @@ class App(QWidget):
         p.play()
 
     def on_click_6(self):
-            webbrowser.open_new("https://evernote.com/")
+        webbrowser.open_new("https://evernote.com/")
 
     def on_click_7(self):
-        webbrowser.open_new("https://web.whatsapp.com/")
-        webbrowser.open_new("https://messages.android.com/")
         webbrowser.open_new("https://www.gmail.com/")
         webbrowser.open_new("https://jabil.okta.com/")
 
@@ -182,7 +185,20 @@ class App(QWidget):
         process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
 
     def on_click_15(self):
-        print("test")
+        routine = open("/home/connor/Desktop/Routine", "r")
+        routine.seek(0)
+        print(routine.read())
+        routine.close()
+
+        rules = open("/home/connor/Desktop/Rules", "r")
+        rules.seek(0)
+        print(rules.read())
+        rules.close()
+
+    def on_click_16(self):
+        webbrowser.open_new("https://www.tinder.com")
+        webbrowser.open_new("https://web.whatsapp.com")
+        webbrowser.open_new("https://messages.android.com/")
 
 
 if __name__ == '__main__':
